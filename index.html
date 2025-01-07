@@ -33,8 +33,8 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 10px;
-            padding: 10px;
+            gap: 20px;
+            padding: 20px;
         }
         button {
             background-color: mediumpurple;
@@ -64,35 +64,25 @@
     <!-- Load Ruffle from the CDN -->
     <script src="https://unpkg.com/@ruffle-rs/ruffle@latest"></script>
     <script>
-        console.log('Ruffle script loaded');
-
         document.addEventListener('DOMContentLoaded', () => {
-        
             const ruffle = window.RufflePlayer.newest();
             const player = ruffle.createPlayer();
             player.style.width = '100%';
             player.style.height = '100%';
             document.getElementById("player-container").appendChild(player);
-            console.log('Ruffle player initialized');
             
             function handleFileUpload(event) {
                 const file = event.target.files[0];
-                console.log('File selected:', file);
 
                 if (file) {
                     const reader = new FileReader();
                     reader.onload = function(e) {
-                        console.log('FileReader loaded file');
-                        
                         try {
                             player.load({ data: e.target.result }).then(() => {
-                                console.log('SWF file loaded successfully');
                             }).catch(error => {
-                                console.error('Error loading SWF file:', error);
                                 alert('Failed to load SWF file. Please make sure it is a valid Flash file.');
                             });
                         } catch (error) {
-                            console.error('Error processing file:', error);
                             alert('Failed to process file. Please make sure it is a valid Flash file.');
                         }
                     };
